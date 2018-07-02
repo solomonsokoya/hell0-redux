@@ -2,8 +2,22 @@ import React, { Component } from "react";
 import HelloWorld from "./HelloWorld";
 import ButtonGroup from "./ButtonGroup";
 import { store } from "./store";
+import { connect } from 'react-redux';
+import setTechnology from './actions';
 
+const mapDispatchToProps = dispatch =>({
+
+handleNameChange: (event) => {
+  console.log(event + 'hi')
+  const tech = event.target.dataset.btn;
+
+  store.dispatch(setTechnology(tech));
+  }
+})
 class App extends Component {
+
+
+
 
   render() {
     console.log(store.getState())
@@ -16,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapDispatchToProps)(App);

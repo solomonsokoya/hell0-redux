@@ -3,12 +3,11 @@ import {store} from './store';
 import setTechnology from './actions'
 
 function dispatchBtnAction(e) {
-  
+
   const tech = e.target.dataset.btn;
 
   store.dispatch(setTechnology(tech));
 }
-
 const ButtonGroup = ({technologies}) => (<div>
   {
 
