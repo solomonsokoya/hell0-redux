@@ -1,20 +1,18 @@
 import React from "react";
-import {store} from './store';
-import setTechnology from './actions'
 
-function dispatchBtnAction(e) {
+const ButtonGroup = (props) => {
 
-  const tech = e.target.dataset.btn;
+  const {onClick, technologies} = props;
 
-  store.dispatch(setTechnology(tech));
+  return (<div>
+    {
+      technologies.map((tech, i) => (
+        <button data-btn={tech} key={`btn-${i}`} className="hello-btn" onClick={onClick}>
+        {tech}
+      </button>))
+    }
+
+  </div>)
 }
-const ButtonGroup = ({technologies}) => (<div>
-  {
-
-    technologies.map((tech, i) => (<button data-btn={tech} key={`btn-${i}`} className="hello-btn" onClick={dispatchBtnAction}>
-      {tech}
-    </button>))
-  }
-</div>);
 
 export default ButtonGroup;

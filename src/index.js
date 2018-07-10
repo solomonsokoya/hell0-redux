@@ -12,3 +12,4 @@ const Dom = (
   </Provider>
 )
 ReactDOM.render(Dom, document.getElementById("root"));
+registerServiceWorker();

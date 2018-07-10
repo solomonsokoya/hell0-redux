@@ -1,9 +1,9 @@
 import React from "react";
 
-const HelloWorld = ({ tech }) => {
+const HelloWorld = (props) => {
   return (
     <div className="hello-world">
-      Hello World <span className="hello-world__tech">{tech}!</span>
+      Hello World <span className="hello-world__tech">{props.tech}!</span>
     </div>
   );
 };

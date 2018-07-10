@@ -1,33 +1,24 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import HelloWorld from "./HelloWorld";
 import ButtonGroup from "./ButtonGroup";
-import { store } from "./store";
-import { connect } from 'react-redux';
-import setTechnology from './actions';
+import {connect} from 'react-redux';
+import {nameChange} from './reducers'
 
-const mapDispatchToProps = dispatch =>({
-
-handleNameChange: (event) => {
-  console.log(event + 'hi')
-  const tech = event.target.dataset.btn;
-
-  store.dispatch(setTechnology(tech));
-  }
+const mapStateToProps = state => {
+  return {state}
+}
+const mapDispatchToProps = dispatch => ({
+  changeName: res => dispatch(nameChange(res.target.dataset.btn))
 })
 class App extends Component {
-
-
-
-
   render() {
-    console.log(store.getState())
-    return [
-
-      <HelloWorld key={1} tech={store.getState().tech} />,
-      <ButtonGroup key={2} technologies={["React", "Elm", "Reactredux"]}/>
-
-  ];
+    console.log(this.props.state.tech)
+    return (
+      <div>
+      <HelloWorld key={1} tech={this.props.state.tech}/>
+      <ButtonGroup key={2} technologies={["React", "Elm", "Reactredux"]} onClick={this.props.changeName}/>
+    </div>)
   }
 }
 
-export default connect(mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
